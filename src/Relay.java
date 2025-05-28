@@ -11,6 +11,11 @@ public class Relay extends Componente{
         this.estado = true;
     }
 
+    public void conectarCable(Cable cable){
+        System.out.println("Cable conectado");
+        this.cableSalida = cable;
+    }
+
     public void encender(){
         System.out.println("Repetidor encendido");
         estado = true;

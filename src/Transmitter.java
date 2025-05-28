@@ -10,6 +10,7 @@ public class Transmitter extends Componente {
     }
 
     public void conectarCable(Cable cable){
+        System.out.println("Cable conectado");
         this.cable = cable;
     }
 

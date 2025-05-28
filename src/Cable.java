@@ -6,6 +6,11 @@ public class Cable extends Componente {
         this.longitud = longitud;
     }
 
+    public void conectarCable(Componente componente){
+        this.receptor = componente;
+        System.out.println("Cable conectado");
+    }
+
     public void transmit(Mensaje mensaje){
         mensaje.debilitar(longitud);
         if (receptor instanceof Relay){
