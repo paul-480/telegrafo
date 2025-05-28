@@ -59,4 +59,10 @@ public class TelegraphSystem {
         componentes.add(repetidor);
         return repetidor;
     }
+
+    public void listarComponentes(){
+        for (Componente componente : componentes) {
+            System.out.println(componente);
+        }
+    }
 }

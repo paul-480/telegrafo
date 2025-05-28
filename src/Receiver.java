@@ -48,5 +48,8 @@ public class Receiver extends Componente {
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "Receiver";
+    }
 }

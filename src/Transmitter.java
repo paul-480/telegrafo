@@ -75,4 +75,11 @@ public class Transmitter extends Componente {
             default -> { return "?"; }
         }
     }
+
+    @Override
+    public String toString() {
+        return "Transmitter{" +
+                "encendido=" + encendido +
+                '}';
+    }
 }

@@ -38,4 +38,9 @@ public class Relay extends Componente{
     public boolean estaActivo() {
         return estado;
     }
+
+    @Override
+    public String toString() {
+        return "Relay{" + "estado=" + estado + '}';
+    }
 }

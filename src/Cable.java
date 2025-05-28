@@ -20,5 +20,8 @@ public class Cable extends Componente {
         }else throw new RuntimeException("Dispositivo no reconocido");
     }
 
-
+    @Override
+    public String toString() {
+        return "Cable{ longitud=" + longitud + '}';
+    }
 }
