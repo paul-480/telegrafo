@@ -6,22 +6,29 @@ public class Cable extends Componente {
         this.longitud = longitud;
     }
 
-    public void conectarCable(Componente componente){
+
+
+    public void conectarCable(Componente componente) {
         this.receptor = componente;
-        System.out.println("Cable conectado");
+        System.out.println("Cable conectado al receptor");
     }
 
-    public void transmit(Mensaje mensaje){
+    public void transmit(Mensaje mensaje) {
         mensaje.debilitar(longitud);
-        if (receptor instanceof Relay){
+        if (receptor instanceof Relay) {
             ((Relay) receptor).amplify_signal(mensaje);
         } else if (receptor instanceof Receiver) {
             ((Receiver) receptor).receive_signal(mensaje);
-        }else throw new RuntimeException("Dispositivo no reconocido");
+        } else throw new RuntimeException("Dispositivo no reconocido");
     }
 
     @Override
     public String toString() {
         return "Cable{ longitud=" + longitud + '}';
+    }
+
+    @Override
+    protected String getNombre() {
+        return "Cable, ";
     }
 }

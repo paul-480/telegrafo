@@ -3,28 +3,34 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TelegraphSystem {
-    private final List<Componente> componentes =new ArrayList<>();
+    private final List<Componente> componentes = new ArrayList<>();
     private static final Scanner in = new Scanner(System.in);
 
-    public TelegraphSystem(){
-
+    public TelegraphSystem() {
+        addTransmitter();
     }
 
-    private void addTransmitter(){
+    private void addTransmitter() {
+        System.out.println("Añadiendo transmisor");
         System.out.println("Deseas encender el transmisor?");
         System.out.println("(1)->Sí");
         System.out.println("(2)->No");
-        boolean encendido = in.nextInt() ==1;
+        boolean encendido = in.nextInt() == 1;
         Transmitter transmisor = new Transmitter(encendido);
         System.out.println("Transmisor creado");
         componentes.add(transmisor);
-        Cable cable= addCable();
+        System.out.println("Transmisor añadido al sistema");
+        System.out.println("Creando cable para el transmisor");
+        Cable cable = addCable();
         transmisor.conectarCable(cable);
+        System.out.println("Cable conectado al transmisor");
     }
-    private Cable addCable(){
-        System.out.println("Introduzca la longitud del cable");
+
+    private Cable addCable() {
+
+        System.out.println("Introduzca la longitud del cable(km)");
         int longitud = in.nextInt();
-        Cable cable= new Cable(longitud);
+        Cable cable = new Cable(longitud);
         componentes.add(cable);
         System.out.println("Cable creado");
 
@@ -32,37 +38,108 @@ public class TelegraphSystem {
         System.out.println("(1)->Repetidor");
         System.out.println("(2)->Receptor");
 
-        if (in.nextInt()==1){
+        if (in.nextInt() == 1) {
             cable.conectarCable(addrelay());
-        }else {
+        } else {
             cable.conectarCable(addReciever());
         }
 
         return cable;
     }
-    private Relay addrelay(){
-        System.out.println("Deseas encender el repetidor?");
+
+    private Relay addrelay() {
+        Relay repetidor;
+
+        System.out.println("Deseas un repetidor con bateria?");
         System.out.println("(1)->Sí");
         System.out.println("(2)->No");
-        boolean encendido = in.nextInt() ==1;
-        Relay repetidor = new Relay(encendido);
+        boolean cargable = in.nextInt() == 1;
+        in.nextLine();
+
+        if (cargable) repetidor = createRelayBL();
+
+        else repetidor = createRelay();
+
+
         System.out.println("Transmisor creado");
         componentes.add(repetidor);
-        Cable cable= addCable();
+        System.out.println("Creando cable para el repetidor");
+        Cable cable = addCable();
         repetidor.conectarCable(cable);
         return repetidor;
     }
 
-    private Receiver addReciever(){
-        Receiver repetidor = new Receiver();
+    private static Relay createRelay() {
+        Relay repetidor;
+        System.out.println("Deseas encender el repetidor?");
+        System.out.println("(1)->Sí");
+        System.out.println("(2)->No");
+        boolean encendido = in.nextInt() == 1;
+        repetidor = new Relay(encendido);
+        return repetidor;
+    }
+
+    private static RelayBL createRelayBL() {
+        RelayBL repetidor;
+        boolean encendido;
+        int bateria;
+        System.out.println("Deseas encender el repetidor?");
+        System.out.println("(1)->Sí");
+        System.out.println("(2)->No");
+        encendido = in.nextInt() == 1;
+        System.out.println("Introduzca la cantidad de batería");
+        bateria = in.nextInt();
+        repetidor = new RelayBL(encendido, bateria);
         System.out.println("Repetidor Creado");
+
+        return repetidor;
+    }
+
+    private Receiver addReciever() {
+        Receiver repetidor = new Receiver();
+        System.out.println("Receptor Creado");
         componentes.add(repetidor);
         return repetidor;
     }
 
-    public void listarComponentes(){
+    public void listarComponentes() {
         for (Componente componente : componentes) {
             System.out.println(componente);
         }
+    }
+
+    public void cargarRepetidores() {
+        for (Componente componente : componentes) {
+            if (componente instanceof RelayBL) {
+                ((RelayBL) componente).cargar();
+            }
+        }
+    }
+
+    public void enviarMensaje() {
+        Transmitter transmitter = componentes.getFirst() instanceof Transmitter ? ((Transmitter) componentes.getFirst()) : null;
+        assert transmitter != null;
+        System.out.print("Introduce el mensaje: ");
+        String texto = in.next();
+        transmitter.send_signal(texto);
+    }
+
+    public void showMensaje() {
+        Receiver receiver = null;
+        for (Componente componente : componentes) {
+            if (componente instanceof Receiver) receiver = (Receiver) componente;
+        }
+        assert receiver != null;
+        receiver.display_message();
+    }
+
+    @Override
+    public String toString() {
+        String lista="Sistema( ";
+        for (Componente componente : componentes) {
+            lista = lista + componente.getNombre();
+        }
+        lista+=")";
+        return lista;
     }
 }

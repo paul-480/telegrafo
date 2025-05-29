@@ -1,6 +1,6 @@
-public class Relay extends Componente{
-    private boolean estado;
-    private Cable cableSalida;
+public class Relay extends Componente {
+    protected boolean estado;
+    protected Cable cableSalida;
 
 
     public Relay(boolean estado) {
@@ -11,28 +11,28 @@ public class Relay extends Componente{
         this.estado = true;
     }
 
-    public void conectarCable(Cable cable){
+    public void conectarCable(Cable cable) {
         System.out.println("Cable conectado");
         this.cableSalida = cable;
     }
 
-    public void encender(){
+    public void encender() {
         System.out.println("Repetidor encendido");
         estado = true;
     }
 
-    public void apagar(){
+    public void apagar() {
         System.out.println("Repetidor apagado");
-        estado=false;
+        estado = false;
 
     }
 
-    public void amplify_signal(Mensaje mensaje){
+    public void amplify_signal(Mensaje mensaje) {
         if (estado) {
             mensaje.amplified();
             System.out.println("Mensaje reintensificado");
             cableSalida.transmit(mensaje);
-        }else throw new DispositivoApagadoExcemption("Repetidor apagado");
+        } else throw new DispositivoApagadoExcemption("Repetidor apagado");
     }
 
     public boolean estaActivo() {
@@ -42,5 +42,10 @@ public class Relay extends Componente{
     @Override
     public String toString() {
         return "Relay{" + "estado=" + estado + '}';
+    }
+
+    @Override
+    protected String getNombre() {
+        return "Repetidor, ";
     }
 }
