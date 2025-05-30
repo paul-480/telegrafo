@@ -104,8 +104,10 @@ public class Main {
                 return false;
             }
             case 4 -> {
-                return true;
+                sistema.showMensaje();
+                return false;
             }
+            case 5->{return true;}
             default -> {
                 System.out.println("Opción invalida");
                 return false;
@@ -127,7 +129,8 @@ public class Main {
         System.out.println("(1)-> Mostrar los componentes ");
         System.out.println("(2)-> Cargar los repetidores");
         System.out.println("(3)-> Enviar un mensaje");
-        System.out.println("(4)-> Volver");
+        System.out.println("(4)-> leer el mensaje");
+        System.out.println("(5)-> Volver");
         System.out.print("Su elección: ");
 
 

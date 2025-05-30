@@ -32,6 +32,7 @@ public class Transmitter extends Componente {
             String mensajeCodificado = "";
             for (int i = 0; i < texto.length(); i++) {
                 mensajeCodificado += Morse.codificar(texto.charAt(i));
+                mensajeCodificado +=",";
             }
             Mensaje mensaje = new Mensaje(mensajeCodificado);
 

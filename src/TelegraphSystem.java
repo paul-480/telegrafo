@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class TelegraphSystem {
@@ -16,6 +17,7 @@ public class TelegraphSystem {
         System.out.println("(1)->Sí");
         System.out.println("(2)->No");
         boolean encendido = in.nextInt() == 1;
+        in.nextLine();
         Transmitter transmisor = new Transmitter(encendido);
         System.out.println("Transmisor creado");
         componentes.add(transmisor);
@@ -30,6 +32,7 @@ public class TelegraphSystem {
 
         System.out.println("Introduzca la longitud del cable(km)");
         int longitud = in.nextInt();
+        in.nextLine();
         Cable cable = new Cable(longitud);
         componentes.add(cable);
         System.out.println("Cable creado");
@@ -43,7 +46,7 @@ public class TelegraphSystem {
         } else {
             cable.conectarCable(addReciever());
         }
-
+        in.nextLine();
         return cable;
     }
 
@@ -75,6 +78,7 @@ public class TelegraphSystem {
         System.out.println("(1)->Sí");
         System.out.println("(2)->No");
         boolean encendido = in.nextInt() == 1;
+        in.nextLine();
         repetidor = new Relay(encendido);
         return repetidor;
     }
@@ -87,8 +91,10 @@ public class TelegraphSystem {
         System.out.println("(1)->Sí");
         System.out.println("(2)->No");
         encendido = in.nextInt() == 1;
+        in.nextLine();
         System.out.println("Introduzca la cantidad de batería");
         bateria = in.nextInt();
+        in.nextLine();
         repetidor = new RelayBL(encendido, bateria);
         System.out.println("Repetidor Creado");
 
@@ -120,7 +126,7 @@ public class TelegraphSystem {
         Transmitter transmitter = componentes.getFirst() instanceof Transmitter ? ((Transmitter) componentes.getFirst()) : null;
         assert transmitter != null;
         System.out.print("Introduce el mensaje: ");
-        String texto = in.next();
+        String texto = in.nextLine().toLowerCase();
         transmitter.send_signal(texto);
     }
 
