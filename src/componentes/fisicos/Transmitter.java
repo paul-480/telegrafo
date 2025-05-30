@@ -1,6 +1,6 @@
-package componentes;
+package componentes.fisicos;
 
-import componentes.abstractos.Encendible;
+import componentes.Encendible;
 import excemptions.DispositivoApagadoExcemption;
 import logica.*;
 
@@ -15,7 +15,7 @@ public class Transmitter extends Encendible {
     public void conectarCable(Cable cable) {
 
         this.cable = cable;
-        System.out.println("componentes.Cable conectado al transmisor");
+        System.out.println("componentes.fisicos.Cable conectado al transmisor");
     }
 
     public boolean estaEncendido() {
@@ -53,7 +53,7 @@ public class Transmitter extends Encendible {
 
     @Override
     public String toString() {
-        return "componentes.Transmitter{" +
+        return "componentes.fisicos.Transmitter{" +
                 "encendido=" + estaEncendido() +
                 '}';
     }

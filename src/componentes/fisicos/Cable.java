@@ -1,6 +1,6 @@
-package componentes;
+package componentes.fisicos;
 
-import componentes.abstractos.Componente;
+import componentes.Componente;
 import logica.Mensaje;
 
 public class Cable extends Componente {
@@ -12,13 +12,12 @@ public class Cable extends Componente {
     }
 
 
-
     public void conectarCable(Componente componente) {
         this.receptor = componente;
-        System.out.println("componentes.Cable conectado al receptor");
+        System.out.println("componentes.fisicos.Cable conectado al receptor");
     }
 
-    public void transmit( Mensaje mensaje) {
+    public void transmit(Mensaje mensaje) {
         mensaje.debilitar(longitud);
         if (receptor instanceof Relay) {
             ((Relay) receptor).amplify_signal(mensaje);
@@ -29,11 +28,11 @@ public class Cable extends Componente {
 
     @Override
     public String toString() {
-        return "componentes.Cable{ longitud=" + longitud + '}';
+        return "componentes.fisicos.Cable{ longitud=" + longitud + '}';
     }
 
     @Override
     public String getNombre() {
-        return "componentes.Cable, ";
+        return "componentes.fisicos.Cable, ";
     }
 }

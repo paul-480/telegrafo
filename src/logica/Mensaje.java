@@ -19,7 +19,7 @@ public class Mensaje {
 //############################################################################
 
     /**
-     * Agrega una probabilidad aleatoria de que un componentes.Cable pierda completamente la señal (por
+     * Agrega una probabilidad aleatoria de que un componentes.fisicos.Cable pierda completamente la señal (por
      * ejemplo, 5% de fallo por cada 10 km).
      */
     public void debilitar(int kmRecorridos) {

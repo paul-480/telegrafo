@@ -1,6 +1,6 @@
-package componentes;
+package componentes.fisicos;
 
-import componentes.abstractos.Componente;
+import componentes.Componente;
 import logica.*;
 
 public class Receiver extends Componente {
@@ -24,7 +24,7 @@ public class Receiver extends Componente {
 
     @Override
     public String toString() {
-        return "componentes.Receiver";
+        return "componentes.fisicos.Receiver";
     }
 
     @Override

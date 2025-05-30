@@ -1,5 +1,7 @@
+import componentes.Componente;
+import componentes.Encendible;
 import excemptions.NotFoundExcemption;
-import componentes.TelegraphSystem;
+import componentes.fisicos.TelegraphSystem;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -85,7 +87,8 @@ public class Main {
                 return false;
             }
             case 2 -> {
-                sistema.cargarRepetidores();
+                menuComponente(sistema);
+
                 return false;
             }
             case 3 -> {
@@ -96,12 +99,64 @@ public class Main {
                 sistema.showMensaje();
                 return false;
             }
-            case 5->{return true;}
+            case 5 -> {
+                return true;
+            }
             default -> {
                 System.out.println("Opción invalida");
                 return false;
             }
         }
+    }
+
+    private static void menuComponente(TelegraphSystem sistema) {
+
+
+        int opcion;
+
+        do {
+            System.out.println("<##########>Administrar componente<#########>");
+            System.out.println("(1)-> Encender un componente");
+            System.out.println("(2)-> Apagar un componente");
+            System.out.println("(3)-> Cargar repetidores");
+            System.out.println("(4)-> Volver.");
+            opcion = in.nextInt();
+
+            switch (opcion) {
+                case 1 -> {
+
+                    Componente componente = sistema.seleccionarComponente();
+                    if (componente instanceof Encendible encendible) {
+                        encendible.encender();
+                    } else {
+                        throw new NotFoundExcemption("No encontrado o no encendible");
+                    }
+
+
+                }
+                case 2 -> {
+                    Componente componente = sistema.seleccionarComponente();
+                    if (componente instanceof Encendible encendible) {
+                        encendible.apagar();
+                    } else {
+                        throw new NotFoundExcemption("No encontrado o no apagable");
+                    }
+
+                }
+                case 3 -> {
+                    sistema.cargarRepetidores();
+                }
+                case 4 -> {
+                    System.out.println("Saliendo...");
+                }
+                default -> {
+                    System.out.println("Opción invalida");
+                }
+            }
+        }
+        while (opcion != 4);
+
+
     }
 
     private static TelegraphSystem chooseSistema() {
@@ -114,9 +169,9 @@ public class Main {
     }
 
     private static void textoMenuSistema() {
-        System.out.println("<############>Menú Principal<##########>");
+        System.out.println("<############>Menú del sistema <##########>");
         System.out.println("(1)-> Mostrar los componentes ");
-        System.out.println("(2)-> Cargar los repetidores");
+        System.out.println("(2)-> Administrar componentes");
         System.out.println("(3)-> Enviar un mensaje");
         System.out.println("(4)-> leer el mensaje");
         System.out.println("(5)-> Volver");

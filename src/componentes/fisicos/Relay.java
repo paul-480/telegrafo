@@ -1,6 +1,6 @@
-package componentes;
+package componentes.fisicos;
 
-import componentes.abstractos.Encendible;
+import componentes.Encendible;
 import excemptions.DispositivoApagadoExcemption;
 import logica.Mensaje;
 
@@ -15,7 +15,7 @@ public class Relay extends Encendible {
 
 
     public void conectarCable(Cable cable) {
-        System.out.println("componentes.Cable conectado");
+        System.out.println("componentes.fisicos.Cable conectado");
         this.cableSalida = cable;
     }
 
@@ -44,7 +44,7 @@ public class Relay extends Encendible {
 
     @Override
     public String toString() {
-        return "componentes.Relay{" + "estado=" + estado + '}';
+        return "componentes.fisicos.Relay{" + "estado=" + estado + '}';
     }
 
     @Override

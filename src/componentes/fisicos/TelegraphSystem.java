@@ -1,6 +1,7 @@
-package componentes;
+package componentes.fisicos;
 
-import componentes.abstractos.Componente;
+import componentes.Componente;
+import excemptions.NotFoundExcemption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class TelegraphSystem {
         System.out.println("Creando cable para el transmisor");
         Cable cable = addCable();
         transmisor.conectarCable(cable);
-        System.out.println("componentes.Cable conectado al transmisor");
+        System.out.println("componentes.fisicos.Cable conectado al transmisor");
     }
 
     private Cable addCable() {
@@ -38,7 +39,7 @@ public class TelegraphSystem {
         in.nextLine();
         Cable cable = new Cable(longitud);
         componentes.add(cable);
-        System.out.println("componentes.Cable creado");
+        System.out.println("componentes.fisicos.Cable creado");
 
         System.out.println("Deseas añadir un repetidor o un receptor?");
         System.out.println("(1)->Repetidor");
@@ -112,8 +113,9 @@ public class TelegraphSystem {
     }
 
     public void listarComponentes() {
+        System.out.println("=======Lista de componentes=======");
         for (Componente componente : componentes) {
-            System.out.println(componente);
+            System.out.println(Integer.toString(componentes.indexOf(componente)) + componente);
         }
     }
 
@@ -124,6 +126,15 @@ public class TelegraphSystem {
             }
         }
     }
+
+    public Componente seleccionarComponente() {
+        listarComponentes();
+        System.out.println("Selecciona un componente de la lista");
+        int index = in.nextInt();
+        if (index < 0 || index >= componentes.size()) throw new NotFoundExcemption("Objeto no encontrado");
+        else return componentes.get(index);
+    }
+
 
     public void enviarMensaje() {
         Transmitter transmitter = componentes.getFirst() instanceof Transmitter ? ((Transmitter) componentes.getFirst()) : null;
@@ -145,7 +156,7 @@ public class TelegraphSystem {
 
     @Override
     public String toString() {
-        StringBuilder lista= new StringBuilder("Sistema( ");
+        StringBuilder lista = new StringBuilder("Sistema( ");
         for (Componente componente : componentes) {
             lista.append(componente.getNombre());
         }

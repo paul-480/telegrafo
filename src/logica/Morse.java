@@ -2,14 +2,15 @@ package logica;
 
 public class Morse {
 
-     public static char traducir(String letra){
-         return desmorse(letra);
-     }
-     public static String traducir(char letra){
-         return codificar(letra);
-     }
+    public static char traducir(String letra) {
+        return desmorse(letra);
+    }
 
-     private static char desmorse(String letra) {
+    public static String traducir(char letra) {
+        return codificar(letra);
+    }
+
+    private static char desmorse(String letra) {
 
         switch (letra) {
             case ".-" -> {

@@ -1,4 +1,4 @@
-package componentes;
+package componentes.fisicos;
 
 import excemptions.DispositivoApagadoExcemption;
 import logica.Mensaje;
@@ -12,7 +12,6 @@ public class RelayBL extends Relay {
         super(estado);
         setBateria(bateria);
     }
-
 
 
     @Override
@@ -43,10 +42,11 @@ public class RelayBL extends Relay {
         } else throw new DispositivoApagadoExcemption("Repetidor apagado");
 
     }
-//############################################################################
+
+    //############################################################################
     @Override
-    public String getNombre(){
-        return "Repetidor con bateria, bateria restante: "+ bateria+", ";
+    public String getNombre() {
+        return "Repetidor con bateria, bateria restante: " + bateria + ", ";
     }
 
     public int getBateria() {
@@ -69,6 +69,6 @@ public class RelayBL extends Relay {
 
     @Override
     public String toString() {
-        return "componentes.Relay{" + "estado=" + estaActivo() + " Bateria=" + getBateria() + '}';
+        return "componentes.fisicos.Relay{" + "estado=" + estaActivo() + " Bateria=" + getBateria() + '}';
     }
 }
