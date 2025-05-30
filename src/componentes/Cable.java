@@ -1,5 +1,6 @@
 package componentes;
 
+import componentes.abstractos.Componente;
 import logica.Mensaje;
 
 public class Cable extends Componente {
@@ -32,7 +33,7 @@ public class Cable extends Componente {
     }
 
     @Override
-    protected String getNombre() {
+    public String getNombre() {
         return "componentes.Cable, ";
     }
 }

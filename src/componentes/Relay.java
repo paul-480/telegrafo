@@ -1,9 +1,10 @@
 package componentes;
 
+import componentes.abstractos.Encendible;
 import excemptions.DispositivoApagadoExcemption;
 import logica.Mensaje;
 
-public class Relay extends Encendible{
+public class Relay extends Encendible {
     protected boolean estado;
     protected Cable cableSalida;
 
@@ -47,7 +48,7 @@ public class Relay extends Encendible{
     }
 
     @Override
-    protected String getNombre() {
+    public String getNombre() {
         return "Repetidor, ";
     }
 }

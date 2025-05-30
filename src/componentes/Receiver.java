@@ -1,5 +1,6 @@
 package componentes;
 
+import componentes.abstractos.Componente;
 import logica.*;
 
 public class Receiver extends Componente {
@@ -27,7 +28,7 @@ public class Receiver extends Componente {
     }
 
     @Override
-    protected String getNombre() {
+    public String getNombre() {
         return "Receptor";
     }
 }

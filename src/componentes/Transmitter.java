@@ -1,9 +1,10 @@
 package componentes;
 
+import componentes.abstractos.Encendible;
 import excemptions.DispositivoApagadoExcemption;
 import logica.*;
 
-public class Transmitter extends Encendible{
+public class Transmitter extends Encendible {
     private boolean encendido;
     private Cable cable;
 
@@ -58,7 +59,7 @@ public class Transmitter extends Encendible{
     }
 
     @Override
-    protected String getNombre() {
+    public String getNombre() {
         return "Transmisor, ";
     }
 }
