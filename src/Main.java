@@ -1,12 +1,14 @@
-import java.rmi.NoSuchObjectException;
+import excemptions.NotFoundExcemption;
+import componentes.TelegraphSystem;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 
 public class Main {
-    private static HashMap<String, TelegraphSystem> sistemas = new HashMap<>();
-    private static Scanner in = new Scanner(System.in);
+    private static final HashMap<String, TelegraphSystem> sistemas = new HashMap<>();
+    private static final Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
         boolean salir;
@@ -24,10 +26,8 @@ public class Main {
         System.out.println("<############>Menú Principal<##########>");
         System.out.println("(1)-> Introducir un nuevo sistema");
         System.out.println("(2)-> Utilizar un sistema existente");
-        System.out.println("(3)-> Mostrar los componentes de un sistema");
-        System.out.println("(4)-> Cargar los repetidores de un sistema");
-        System.out.println("(5)-> Mostrar lista de sistemas");
-        System.out.println("(6)-> Enviar un mensaje por un sistema");
+        System.out.println("(3)-> Mostrar lista de sistemas");
+        System.out.println("(4)-> Salir");
         System.out.print("Su elección: ");
     }
 
@@ -36,40 +36,20 @@ public class Main {
         in.nextLine();
         switch (opcion) {
             case 1 -> {
-                System.out.println("Ha seleccionado Crear nuevo sistema");
+
                 addSystem();
                 return false;
             }
             case 2 -> {
-                TelegraphSystem sistema = chooseSistema();
-
-                boolean salir;
-                do {
-                    textoMenuSistema();
-                    salir = menuSistema(sistema);
-                } while (!salir);
-                return false;
+                return mostrarMenuSistema();
             }
             case 3 -> {
-                TelegraphSystem sistema = chooseSistema();
-                sistema.listarComponentes();
-                return false;
-            }
-            case 4 -> {
-                TelegraphSystem sistema = chooseSistema();
-                sistema.cargarRepetidores();
-                return false;
-            }
-            case 5 -> {
+
                 showAllSistemas();
                 return false;
             }
-            case 6 -> {
-                TelegraphSystem sistema = chooseSistema();
-                sistema.enviarMensaje();
-                sistema.showMensaje();
-            }
-            case 7 -> {
+            case 4 -> {
+                System.out.println("Saliendo...");
                 return true;
             }
             default -> {
@@ -78,6 +58,15 @@ public class Main {
             }
 
         }
+    }
+
+    private static boolean mostrarMenuSistema() {
+        TelegraphSystem sistema = chooseSistema();
+        boolean salir;
+        do {
+            textoMenuSistema();
+            salir = menuSistema(sistema);
+        } while (!salir);
         return false;
     }
 
@@ -137,6 +126,7 @@ public class Main {
     }
 
     private static void addSystem() {
+        System.out.println("Ha seleccionado Crear nuevo sistema");
         String clave;
         System.out.println("Introduzca un nombre para su sistema");
         clave = in.next();
