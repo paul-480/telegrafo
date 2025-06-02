@@ -1,7 +1,9 @@
 package componentes.fisicos;
 
 import componentes.Componente;
+import jdk.jshell.execution.Util;
 import logica.Mensaje;
+import logica.Utilities;
 
 public class Cable extends Componente {
     private final int longitud;
@@ -11,6 +13,19 @@ public class Cable extends Componente {
         this.longitud = longitud;
     }
 
+    public Cable(){
+        System.out.println("Introduzca la longitud del cable(km)");
+        this.longitud = Utilities.validarPositivo(Utilities.in().nextInt());
+        System.out.println("Deseas añadir un repetidor o un receptor?");
+        System.out.println("(1)->Repetidor");
+        System.out.println("(2)->Receptor");
+
+        if (Utilities.in().nextInt() == 1) {
+            conectarCable(new Relay());
+        } else {
+            conectarCable(new Receiver());
+        }
+    }
 
     public void conectarCable(Componente componente) {
         this.receptor = componente;

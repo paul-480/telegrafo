@@ -2,6 +2,7 @@ package componentes.fisicos;
 
 import componentes.Componente;
 import excemptions.NotFoundExcemption;
+import logica.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class TelegraphSystem {
     }
 
     private void addTransmitter() {
-        boolean encendido = isEncendido();
+        boolean encendido = Utilities.isEncendido();
         in.nextLine();
         Transmitter transmisor = new Transmitter(encendido);
         System.out.println("Transmisor creado");
@@ -26,14 +27,6 @@ public class TelegraphSystem {
         Cable cable = addCable();
         transmisor.conectarCable(cable);
         System.out.println("Cable conectado al transmisor");
-    }
-
-    private static boolean isEncendido() {
-        System.out.println("Añadiendo transmisor");
-        System.out.println("El dispositivo está encendido?");
-        System.out.println("(1)->Sí");
-        System.out.println("(2)->No");
-        return in.nextInt() == 1;
     }
 
     private Cable addCable() {
@@ -78,25 +71,25 @@ public class TelegraphSystem {
         return repetidor;
     }
 
-    private static Relay createRelay() {
+    private Relay createRelay() {
         System.out.println("Creando repetidor");
-        return new Relay(isEncendido());
+        return new Relay(Utilities.isEncendido());
     }
 
-    private static RelayBL createRelayBL() {
+    private  RelayBL createRelayBL() {
         RelayBL repetidor;
         int bateria;
         System.out.println("Introduzca la cantidad de batería");
         bateria = in.nextInt();
         in.nextLine();
-        repetidor = new RelayBL(isEncendido(), bateria);
+        repetidor = new RelayBL(Utilities.isEncendido(), bateria);
         return repetidor;
     }
 
     private Receiver addReciever() {
-        Receiver repetidor = new Receiver();
-        componentes.add(repetidor);
-        return repetidor;
+        Receiver receiver = new Receiver();
+        componentes.add(receiver);
+        return receiver;
     }
 
     public void listarComponentes() {

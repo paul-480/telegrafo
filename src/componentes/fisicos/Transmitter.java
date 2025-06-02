@@ -12,6 +12,11 @@ public class Transmitter extends Encendible {
         this.encendido = encendido;
     }
 
+    public Transmitter(){
+        this.encendido = Utilities.isEncendido();
+        this.cable = new Cable();
+    }
+
     public void conectarCable(Cable cable) {
 
         this.cable = cable;

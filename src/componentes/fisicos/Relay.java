@@ -3,6 +3,7 @@ package componentes.fisicos;
 import componentes.Encendible;
 import excemptions.DispositivoApagadoExcemption;
 import logica.Mensaje;
+import logica.Utilities;
 
 public class Relay extends Encendible {
     protected boolean estado;
@@ -11,6 +12,11 @@ public class Relay extends Encendible {
 
     public Relay(boolean estado) {
         this.estado = estado;
+    }
+
+    /**Todo */
+    public Relay(){
+        this.estado= Utilities.isEncendido();
     }
 
 
