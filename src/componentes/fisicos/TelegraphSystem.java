@@ -16,11 +16,7 @@ public class TelegraphSystem {
     }
 
     private void addTransmitter() {
-        System.out.println("Añadiendo transmisor");
-        System.out.println("Deseas encender el transmisor?");
-        System.out.println("(1)->Sí");
-        System.out.println("(2)->No");
-        boolean encendido = in.nextInt() == 1;
+        boolean encendido = isEncendido();
         in.nextLine();
         Transmitter transmisor = new Transmitter(encendido);
         System.out.println("Transmisor creado");
@@ -29,7 +25,15 @@ public class TelegraphSystem {
         System.out.println("Creando cable para el transmisor");
         Cable cable = addCable();
         transmisor.conectarCable(cable);
-        System.out.println("componentes.fisicos.Cable conectado al transmisor");
+        System.out.println("Cable conectado al transmisor");
+    }
+
+    private static boolean isEncendido() {
+        System.out.println("Añadiendo transmisor");
+        System.out.println("El dispositivo está encendido?");
+        System.out.println("(1)->Sí");
+        System.out.println("(2)->No");
+        return in.nextInt() == 1;
     }
 
     private Cable addCable() {
@@ -67,8 +71,6 @@ public class TelegraphSystem {
 
         else repetidor = createRelay();
 
-
-        System.out.println("Transmisor creado");
         componentes.add(repetidor);
         System.out.println("Creando cable para el repetidor");
         Cable cable = addCable();
@@ -77,37 +79,22 @@ public class TelegraphSystem {
     }
 
     private static Relay createRelay() {
-        Relay repetidor;
-        System.out.println("Deseas encender el repetidor?");
-        System.out.println("(1)->Sí");
-        System.out.println("(2)->No");
-        boolean encendido = in.nextInt() == 1;
-        in.nextLine();
-        repetidor = new Relay(encendido);
-        return repetidor;
+        System.out.println("Creando repetidor");
+        return new Relay(isEncendido());
     }
 
     private static RelayBL createRelayBL() {
         RelayBL repetidor;
-        boolean encendido;
         int bateria;
-        System.out.println("Deseas encender el repetidor?");
-        System.out.println("(1)->Sí");
-        System.out.println("(2)->No");
-        encendido = in.nextInt() == 1;
-        in.nextLine();
         System.out.println("Introduzca la cantidad de batería");
         bateria = in.nextInt();
         in.nextLine();
-        repetidor = new RelayBL(encendido, bateria);
-        System.out.println("Repetidor Creado");
-
+        repetidor = new RelayBL(isEncendido(), bateria);
         return repetidor;
     }
 
     private Receiver addReciever() {
         Receiver repetidor = new Receiver();
-        System.out.println("Receptor Creado");
         componentes.add(repetidor);
         return repetidor;
     }

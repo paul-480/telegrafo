@@ -11,6 +11,7 @@ public class RelayBL extends Relay {
     public RelayBL(boolean estado, int bateria) {
         super(estado);
         setBateria(bateria);
+        System.out.println("Repetidor Creado");
     }
 
 

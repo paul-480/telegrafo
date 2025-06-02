@@ -19,11 +19,23 @@ public class Cable extends Componente {
 
     public void transmit(Mensaje mensaje) {
         mensaje.debilitar(longitud);
+        enviar(mensaje);
+    }
+
+    private void enviar(Mensaje mensaje) {
         if (receptor instanceof Relay) {
-            ((Relay) receptor).amplify_signal(mensaje);
+            enviarARelay(mensaje);
         } else if (receptor instanceof Receiver) {
-            ((Receiver) receptor).receive_signal(mensaje);
+            enviarAReceptor(mensaje);
         } else throw new RuntimeException("Dispositivo no reconocido");
+    }
+
+    private void enviarAReceptor(Mensaje mensaje) {
+        ((Receiver) receptor).receive_signal(mensaje);
+    }
+
+    private void enviarARelay(Mensaje mensaje) {
+        ((Relay) receptor).amplify_signal(mensaje);
     }
 
     @Override

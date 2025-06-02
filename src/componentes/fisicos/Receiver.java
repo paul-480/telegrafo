@@ -4,6 +4,11 @@ import componentes.Componente;
 import logica.*;
 
 public class Receiver extends Componente {
+
+    public Receiver() {
+        System.out.println("Receptor Creado");
+    }
+
     private String mensajeRecibido;
 
     public void receive_signal(Mensaje mensaje) {
