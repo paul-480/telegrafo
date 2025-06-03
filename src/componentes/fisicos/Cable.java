@@ -5,6 +5,8 @@ import jdk.jshell.execution.Util;
 import logica.Mensaje;
 import logica.Utilities;
 
+import static logica.Utilities.in;
+
 public class Cable extends Componente {
     private final int longitud;
     private Componente receptor;
@@ -15,13 +17,23 @@ public class Cable extends Componente {
 
     public Cable(){
         System.out.println("Introduzca la longitud del cable(km)");
-        this.longitud = Utilities.validarPositivo(Utilities.in().nextInt());
+        this.longitud = Utilities.validarPositivo(in().nextInt());
         System.out.println("Deseas añadir un repetidor o un receptor?");
         System.out.println("(1)->Repetidor");
         System.out.println("(2)->Receptor");
 
-        if (Utilities.in().nextInt() == 1) {
-            conectarCable(new Relay());
+        if (in().nextInt() == 1) {
+            Relay repetidor;
+            System.out.println("Deseas un repetidor con bateria?");
+            System.out.println("(1)->Sí");
+            System.out.println("(2)->No");
+            boolean cargable = in().nextInt() == 1;
+            in().nextLine();
+
+            if (cargable) repetidor = new RelayBL();
+
+            else repetidor = new Relay();
+            conectarCable(repetidor);
         } else {
             conectarCable(new Receiver());
         }
@@ -29,7 +41,7 @@ public class Cable extends Componente {
 
     public void conectarCable(Componente componente) {
         this.receptor = componente;
-        System.out.println("componentes.fisicos.Cable conectado al receptor");
+        System.out.println("Cable conectado al receptor");
     }
 
     public void transmit(Mensaje mensaje) {

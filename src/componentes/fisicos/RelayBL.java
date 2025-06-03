@@ -2,6 +2,9 @@ package componentes.fisicos;
 
 import excemptions.DispositivoApagadoExcemption;
 import logica.Mensaje;
+import logica.Utilities;
+
+import static logica.Utilities.in;
 
 public class RelayBL extends Relay {
 
@@ -14,6 +17,17 @@ public class RelayBL extends Relay {
         System.out.println("Repetidor Creado");
     }
 
+    public RelayBL() {
+        RelayBL repetidor;
+        int bateria;
+        System.out.println("Introduzca la cantidad de batería");
+        bateria = in().nextInt();
+        in().nextLine();
+
+        this.bateria=bateria;
+        this.estado= Utilities.isEncendido();
+
+    }
 
     @Override
     public void encender() {

@@ -6,6 +6,11 @@ import logica.*;
 
 public class Transmitter extends Encendible {
     private boolean encendido;
+
+    public Cable getCable() {
+        return cable;
+    }
+
     private Cable cable;
 
     public Transmitter(boolean encendido) {
@@ -13,14 +18,16 @@ public class Transmitter extends Encendible {
     }
 
     public Transmitter(){
+        System.out.println("Creando transmisor");
         this.encendido = Utilities.isEncendido();
+        System.out.println("Creando cable para el transmisor");
         this.cable = new Cable();
+        System.out.println("Transmisor creado");
     }
 
     public void conectarCable(Cable cable) {
-
         this.cable = cable;
-        System.out.println("componentes.fisicos.Cable conectado al transmisor");
+        System.out.println("Cable conectado al transmisor");
     }
 
     public boolean estaEncendido() {

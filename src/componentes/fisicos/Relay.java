@@ -17,6 +17,7 @@ public class Relay extends Encendible {
     /**Todo */
     public Relay(){
         this.estado= Utilities.isEncendido();
+        this.cableSalida = new Cable();
     }
 
 
